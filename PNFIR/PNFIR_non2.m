@@ -6,18 +6,19 @@
         sum_e = 0;
         time=100;     
         
-        learning_rate_w=0.01;  %  w
-        learning_rate_h=0.6;  %  h
-        learning_rate_a=0.6;  %  a
+        learning_rate_w=0.001;  %  w
+        learning_rate_h=0.5;  %  h
+        learning_rate_a=0.01;  %  a
         
         TT=1;
         Ta=0;
 for t=1:time
         t
         x=0.6*rand(1,N);  %w=0.9 h=0.3 x(kk).^3
-        %x=randn(1,N);x=0.4*(x-min(x))/(max(x)-min(x)); %w=0.5 h=0.3  x(kk).^2 (h¹ıĞ¡ÊÕÁ²Âı£¬h¹ı´ó»áÓĞÂö³åÇÒÎÈÌ¬Îó²î»áÔö¼Ó)
-        
-        d=nonlinear1(x,N);
+        %x=randn(1,N);x=0.6*(x-min(x))/(max(x)-min(x)); %w=0.5 h=0.3  x(kk).^2 (hè¿‡å°æ”¶æ•›æ…¢ï¼Œhè¿‡å¤§ä¼šæœ‰è„‰å†²ä¸”ç¨³æ€è¯¯å·®ä¼šå¢åŠ )
+        %x=ARMANoise2(N);  x=0.6*(x-min(x))/(max(x)-min(x));  x=x.';
+
+        d=non2(x,N);
         d=Noise(30,d,N);
                   
 
@@ -38,13 +39,13 @@ for t=1:time
         h=0.001*randn(M,L+1);
         % Weight vector of linear section;       
         w=0.001*randn(1,M);
-        % Ã¿¸öÄ£¿éµÄÊäÈëÏòÁ¿
+        % æ¯ä¸ªæ¨¡å—çš„è¾“å…¥å‘é‡
         X=zeros(1,L+1);
-        % Ã¿¸öÄ£¿éµÄÊä³öÑÓ³ÙĞÅºÅ
+        % æ¯ä¸ªæ¨¡å—çš„è¾“å‡ºå»¶è¿Ÿä¿¡å·
         r=zeros(1,M);
         A=zeros(M,L+1);
 
-        %µ÷ÓÃPNFIRº¯ÊıÀ´¼ÆËã
+        %è°ƒç”¨PNFIRå‡½æ•°æ¥è®¡ç®—
         e=PNFIR_Model(L,M,N,A,y,x,d,lrh,lrw,lra,h,w,TT,Ta);      
         sum_e= sum_e + e.^2;
 end
@@ -53,4 +54,4 @@ avg_e = sum_e/time;
 plot(1:5000, 10*log10(avg_e), 'k');
 legend('PNFIR');
 
-save ('PNFIR\data\PNFIR.mat','avg_e');
+% save ('PNFIR\data\PNFIR.mat','avg_e');

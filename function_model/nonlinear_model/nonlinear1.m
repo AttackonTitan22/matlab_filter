@@ -1,3 +1,5 @@
+
+%PNFIR论文中采用
 function d=nonlinear1(x,N)
         d=zeros(1,N);
         for n=2:N

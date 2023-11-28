@@ -81,5 +81,5 @@ end
 avg_e = sum_e/time;
 plot(1:5000, 10*log10(avg_e), 'k');
 legend('PNFIR(凸组合系数为1)');
-save ('PNFIR\data\const_PNFIR.mat','avg_e');
+% save ('PNFIR\data\const_PNFIR.mat','avg_e');
 

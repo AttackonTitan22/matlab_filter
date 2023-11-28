@@ -12,8 +12,8 @@ function e=PNFIR_Model(L,M,N,A,y,x,d,lrh,lrw,lra,h,w,TT,Ta)
         % lra:凸组合系数的初始权重
         % h:非线性部分的权重矩阵
         % w:线性部分的权重矩阵
-        % TT:凸组合系数lamuda
-        % Ta:凸组合系数lamuda的初始值
+        % TT:凸组合系数lambda
+        % Ta:凸组合系数lambda的初始值
 
         for i=L+M-1:1:N        %输入信号x的长度
             Z=0;
